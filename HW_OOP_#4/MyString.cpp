@@ -3,26 +3,28 @@
 #include <iostream>
 using namespace std;
 
-//	конструктор по умолчанию, позволяющий создать строку длиной 80 символов;
+int MyString::countLiveObj = 0;
+
 MyString::MyString()  
 {
 	str = new char[80+1];
 	str[0] = '\0';
+	countLiveObj++;
 }
-// конструктор, позволяющий создавать строку произвольного размера;
 MyString::MyString(int length)
 {
 	str = new char[length + 1];
 	str[0] = '\0';
+	countLiveObj++;
 }
-// конструктор, который создаёт строку и инициализирует её строкой, полученной от пользователя. 
 MyString::MyString(const char* input)
 {
 	str = new char[strlen(input) + 1];
 	strcpy_s(str, strlen(input) + 1, input);
+	countLiveObj++;
 }
 
-// методы для ввода строк с клавиатуры и вывода строк на экран.
+
 void MyString::input()
 {
 	char buff[100];
@@ -48,19 +50,99 @@ void MyString::print()
 	}
 }
 
-// // копирование строк
+int MyString::MyStrLen()
+{
+	return strlen(str);
+}
 void MyString::MyStrcpy(MyString& obj)
 {
-	if (str != nullptr)
+	delete[] str;
+
+	str = new char[obj.MyStrLen() + 1];
+	strcpy_s(str, obj.MyStrLen() + 1, obj.getStr());
+}
+bool MyString::MyStrStr(const char* _str)
+{
+	char* result = strstr(str, _str);
+
+	if (result != nullptr) 
 	{
-		delete[] str;
+		return true;
+	}
+	else 
+	{
+		return false;
+	}
+}
+int MyString::MyChr(char c)
+{
+	char* pos = strchr(str, c);
+	if (pos != nullptr)
+	{
+		return pos - str;
+	}
+	return -1;
+}
+void MyString::MyStrCat(MyString& b)
+{
+	int newLength = MyStrLen() + b.MyStrLen() + 1;
+	char* temp = new char[newLength];
+
+	strcpy_s(temp, MyStrLen() + 1, str);
+	strcat_s(temp, newLength, b.str);
+
+	delete[] str;
+	str = temp;
+}
+void MyString::MyDelChr(char c)
+{
+	int len = MyStrLen();
+	char* temp = new char[len + 1];
+	int j = 0;
+
+	for (int i = 0; i < len; i++)
+	{
+		if (str[i] != c)
+		{
+			temp[j++] = str[i];
+		}
 	}
 
-	str = new char[strlen(obj.str) + 1];
-	strcpy_s(str, strlen(obj.str) + 1, obj.str);
+	temp[j] = '\0';
+
+	delete[] str;
+	str = temp;
+}
+int MyString::MyStrCmp(MyString& b)
+{
+	int result = strcmp(str, b.str);
+
+	if (result < 0) 
+	{
+		return -1;
+	}
+	else if (result > 0) 
+	{
+		return 1;
+	}
+	else 
+	{
+		return 0;
+	}
+}
+
+const char* MyString::getStr()
+{
+	return str;
+}
+
+int MyString::GetCount()
+{
+	return countLiveObj;
 }
 
 MyString::~MyString()
 {
 	delete[] str;
+	countLiveObj--;
 }
