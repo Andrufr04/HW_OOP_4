@@ -8,6 +8,9 @@ public:
 	MyString();
 	MyString(int length);
 	MyString(const char* input);
+
+	MyString(const MyString& str1);
+
 	void input();
 	void print();
 

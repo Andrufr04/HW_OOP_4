@@ -24,6 +24,13 @@ MyString::MyString(const char* input)
 	countLiveObj++;
 }
 
+MyString::MyString(const MyString& str1)
+{
+	cout << "Copy constructor" << endl;
+	str = new char[strlen(str1.str) + 1]; 
+	strcpy_s(str, strlen(str1.str) + 1, str1.str);
+}
+
 
 void MyString::input()
 {

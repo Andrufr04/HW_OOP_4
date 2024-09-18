@@ -4,7 +4,15 @@ using namespace std;
 
 int main()
 {
-    MyString str("Hello Worl");
+    MyString str1("Hello, world!");
+    cout << "str1: ";
+    str1.print();
+    MyString str2 = str1;
+    cout << "str2: ";
+    str2.print();
+
+
+    /*MyString str("Hello Worl");
     MyString str1("Hello Worl");
     cout << str.MyStrCmp(str1);
 
@@ -13,7 +21,7 @@ int main()
         MyString str3;
         cout << "Count: " << MyString::GetCount() << endl;
     }
-    cout << "Count: " << MyString::GetCount() << endl;
+    cout << "Count: " << MyString::GetCount() << endl;*/
 
 
     /*MyString str("Hello");
