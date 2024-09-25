@@ -6,10 +6,21 @@ int main()
 {
     MyString str1("Hello, world!");
     cout << "str1: ";
+    str1();
+    char a = str1[0];
+    cout << endl << a << endl;
+
+    MyString obj2;
+    obj2 = str1;
+    cout << "2: ";
+    obj2();
+
+    /*MyString str1("Hello, world!");
+    cout << "str1: ";
     str1.print();
     MyString str2 = str1;
     cout << "str2: ";
-    str2.print();
+    str2.print();*/
 
 
     /*MyString str("Hello Worl");
@@ -38,9 +49,9 @@ int main()
     /*MyString str("Hello Wo");
     str.print();
     cout << str.MyChr('t');*/
-    
-	/*MyString str1("1234");
-	str1.print();
+
+    /*MyString str1("1234");
+    str1.print();
     bool search = str1.MyStrStr("89");
     cout << search;
     search = str1.MyStrStr("12");

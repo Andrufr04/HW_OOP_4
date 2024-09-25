@@ -5,9 +5,9 @@ using namespace std;
 
 int MyString::countLiveObj = 0;
 
-MyString::MyString()  
+MyString::MyString()
 {
-	str = new char[80+1];
+	str = new char[80 + 1];
 	str[0] = '\0';
 	countLiveObj++;
 }
@@ -27,7 +27,7 @@ MyString::MyString(const char* input)
 MyString::MyString(const MyString& str1)
 {
 	cout << "Copy constructor" << endl;
-	str = new char[strlen(str1.str) + 1]; 
+	str = new char[strlen(str1.str) + 1];
 	strcpy_s(str, strlen(str1.str) + 1, str1.str);
 }
 
@@ -72,11 +72,11 @@ bool MyString::MyStrStr(const char* _str)
 {
 	char* result = strstr(str, _str);
 
-	if (result != nullptr) 
+	if (result != nullptr)
 	{
 		return true;
 	}
-	else 
+	else
 	{
 		return false;
 	}
@@ -124,15 +124,15 @@ int MyString::MyStrCmp(MyString& b)
 {
 	int result = strcmp(str, b.str);
 
-	if (result < 0) 
+	if (result < 0)
 	{
 		return -1;
 	}
-	else if (result > 0) 
+	else if (result > 0)
 	{
 		return 1;
 	}
-	else 
+	else
 	{
 		return 0;
 	}
@@ -141,6 +141,39 @@ int MyString::MyStrCmp(MyString& b)
 const char* MyString::getStr()
 {
 	return str;
+}
+
+MyString& MyString::operator=(const MyString& obj)
+{
+	if (this == &obj)
+	{
+		return *this;
+	}
+	if (str != nullptr)
+	{
+		delete[] str;
+	}
+	length = obj.length;
+
+	str = new char[strlen(obj.str) + 1];
+	strcpy_s(str, strlen(obj.str) + 1, obj.str);
+
+	return*this;
+}
+char MyString::operator[](int index)
+{
+	return str[index];
+}
+void MyString::operator() ()
+{
+	if (str[0] == '\0')
+	{
+		cout << "Empty" << endl;
+	}
+	else
+	{
+		cout << "Your string: " << str << endl;
+	}
 }
 
 int MyString::GetCount()

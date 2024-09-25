@@ -25,7 +25,12 @@ public:
 
 	const char* getStr();
 
+	////
+	MyString& operator=(const MyString& obj);
+	char operator[] (int index);
+	void operator() ();
+	////
+
 	static int GetCount();
 	~MyString();
 };
-
