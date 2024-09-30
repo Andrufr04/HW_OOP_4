@@ -4,10 +4,17 @@ class MyString
 	char* str;
 	int length;
 	static int countLiveObj;
+	friend MyString operator+(const char* lhs, const MyString& rhs);
+
 public:
 	MyString();
 	MyString(int length);
 	MyString(const char* input);
+
+	const char* getStr() const;
+	int getLength() const;
+	void setStr(const char* input);
+	void setLength(int len);
 
 	MyString(MyString&& obj);
 	MyString& operator= (MyString&& obj);
@@ -35,5 +42,8 @@ public:
 	////
 
 	static int GetCount();
+
+	MyString& operator+=(const MyString& other);
+
 	~MyString();
 };

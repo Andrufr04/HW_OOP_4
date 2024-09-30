@@ -2,10 +2,56 @@
 #include "MyString.h" 
 using namespace std;
 
+ostream& operator<<(ostream& os, const MyString& obj)
+{
+    if (obj.getStr() != nullptr) 
+    {
+        os << obj.getStr();
+    }
+    else
+    {
+        os << "empty";
+    }
+    return os;
+}
+istream& operator>>(istream& is, MyString& obj)
+{
+    char buff[100];
+    is.getline(buff, 100);
+    obj.setStr(buff);
+
+    return is;
+}
+
+
+MyString operator+(const char* lhs, const MyString& rhs) 
+{
+    int newLength = strlen(lhs) + strlen(rhs.str) + 1;
+    MyString temp(newLength);
+    strcpy_s(temp.str, strlen(lhs) + 1, lhs);
+    strcat_s(temp.str, newLength, rhs.str);
+
+    return temp;
+}
 
 int main()
 {
-    MyString str1("Hello");
+    MyString a("World");
+    MyString b;
+    b = "Hello " + a;
+    cout << b;
+
+    /*MyString str1("Hello, ");
+    MyString str2("world!");
+    cout << str1 << endl << str2 << endl;
+
+    str1 += str2;
+
+    cout << "str1: " << str1 << endl;
+    cout << "str2: " << str2 << endl;*/
+
+
+    /*MyString str1("Hello");
     cout << "str1: ";
     str1.print();
     MyString str2("world!");
@@ -14,8 +60,7 @@ int main()
     cout << endl << endl;
 
     str2 = move(str1);
-
-    str1.print();
+    cout << str1;*/
 
     /*MyString a = move(str1);
     str1.print();

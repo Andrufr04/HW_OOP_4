@@ -24,6 +24,34 @@ MyString::MyString(const char* input)
 	countLiveObj++;
 }
 
+const char* MyString::getStr() const
+{
+	return str;
+}
+int MyString::getLength() const
+{
+	return strlen(str);
+}
+void MyString::setStr(const char* input)
+{
+	if (str != nullptr)
+	{
+		delete[] str;
+	}
+	str = new char[strlen(input) + 1];
+	strcpy_s(str, strlen(input) + 1, input);
+}
+void MyString::setLength(int len)
+{
+	if (str != nullptr)
+	{
+		delete[] str;
+	}
+	str = new char[len + 1];
+	str[0] = '\0';
+}
+
+
 MyString::MyString(MyString&& obj)
 {
 	str = obj.str;
@@ -202,6 +230,21 @@ int MyString::GetCount()
 {
 	return countLiveObj;
 }
+
+MyString& MyString::operator+=(const MyString& other) 
+{
+	int newLength = strlen(this->str) + strlen(other.str) + 1;
+	char* temp = new char[newLength];
+
+	strcpy_s(temp, newLength, this->str);
+	strcat_s(temp, newLength, other.str);
+
+	delete[] this->str;
+	this->str = temp;
+
+	return *this;
+}
+
 
 MyString::~MyString()
 {
