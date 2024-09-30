@@ -32,9 +32,6 @@ public:
 	void MyDelChr(char c);
 	int MyStrCmp(MyString& b);
 
-
-	const char* getStr();
-
 	////
 	MyString& operator=(const MyString& obj);
 	char operator[] (int index);

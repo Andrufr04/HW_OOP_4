@@ -188,11 +188,6 @@ int MyString::MyStrCmp(MyString& b)
 	}
 }
 
-const char* MyString::getStr()
-{
-	return str;
-}
-
 MyString& MyString::operator=(const MyString& obj)
 {
 	if (this == &obj)

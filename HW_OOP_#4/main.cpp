@@ -24,12 +24,12 @@ istream& operator>>(istream& is, MyString& obj)
 }
 
 
-MyString operator+(const char* lhs, const MyString& rhs) 
+MyString operator+(const char* str1, const MyString& str2) 
 {
-    int newLength = strlen(lhs) + strlen(rhs.str) + 1;
+    int newLength = strlen(str1) + strlen(str2.str) + 1;
     MyString temp(newLength);
-    strcpy_s(temp.str, strlen(lhs) + 1, lhs);
-    strcat_s(temp.str, newLength, rhs.str);
+    strcpy_s(temp.str, strlen(str1) + 1, str1);
+    strcat_s(temp.str, newLength, str2.str);
 
     return temp;
 }
