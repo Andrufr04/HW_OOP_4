@@ -2,9 +2,27 @@
 #include "MyString.h" 
 using namespace std;
 
+
 int main()
 {
-    MyString str1("Hello, world!");
+    MyString str1("Hello");
+    cout << "str1: ";
+    str1.print();
+    MyString str2("world!");
+    cout << "str2: ";
+    str2.print();
+    cout << endl << endl;
+
+    str2 = move(str1);
+
+    str1.print();
+
+    /*MyString a = move(str1);
+    str1.print();
+    a.print();*/
+
+
+    /*MyString str1("Hello, world!");
     cout << "str1: ";
     str1();
     char a = str1[0];
@@ -13,7 +31,7 @@ int main()
     MyString obj2;
     obj2 = str1;
     cout << "2: ";
-    obj2();
+    obj2();*/
 
     /*MyString str1("Hello, world!");
     cout << "str1: ";

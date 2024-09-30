@@ -24,6 +24,28 @@ MyString::MyString(const char* input)
 	countLiveObj++;
 }
 
+MyString::MyString(MyString&& obj)
+{
+	str = obj.str;
+	length = obj.length;
+	obj.str = nullptr;
+	obj.length = 0;
+}
+
+MyString& MyString::operator=(MyString&& obj)
+{
+	if (str != nullptr)
+	{
+		delete[] str;
+	}
+	str = obj.str;
+	length = obj.length;
+	obj.str = nullptr;
+	obj.length = 0;
+
+	return *this;
+}
+
 MyString::MyString(const MyString& str1)
 {
 	cout << "Copy constructor" << endl;
@@ -47,13 +69,13 @@ void MyString::input()
 }
 void MyString::print()
 {
-	if (str[0] == '\0')
+	if(str != nullptr) 
 	{
-		cout << "Empty" << endl;
+		cout << str << endl;
 	}
-	else
+	else 
 	{
-		cout << "Your string: " << str << endl;
+		cout << "empty" << endl;
 	}
 }
 

@@ -9,6 +9,9 @@ public:
 	MyString(int length);
 	MyString(const char* input);
 
+	MyString(MyString&& obj);
+	MyString& operator= (MyString&& obj);
+
 	MyString(const MyString& str1);
 
 	void input();
